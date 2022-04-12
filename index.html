@@ -63,10 +63,42 @@
  				 object-fit: cover;
   				object-position: center;
 			}
+			.rub {
+				background-color: rgb(19, 214, 149);
+				height: 30px;
+				border: 1px solid black;
+				cursor: pointer;
+			}
+			.bablo {
+				width: 50px;
+				height: 50px;
+				background-color: rgb(15, 152, 24);
+				border: 1px solid black;
+				border-radius: 100%;
+				text-align: center;
+				font-size: 25px;
+				color: rgb(247, 247, 219);
+				padding-top: 5px;
+			}
+			.rubback {
+				background-color: brown;
+			}
+			.spanmoney {
+				text-align: center;
+				padding: 10px 2px 0px 2px;
+				
+			}
+			.col-md-6 {
+				opacity: 0.8;
+			}
+			body {
+				background-color: rgb(144, 140, 149);
+			}
       #money {
         margin-top: 0.5rem;
         margin-left: 1.5rem;
       }
+
 		</style>
 	</head>
 	<body>
@@ -96,12 +128,40 @@
 				</div>
 				<div class="col-md-6">
 					<input class="balance" type="text" placeholder="Сколько у вас денег." id="money" />
+					<div>
+						<div class="rub" onclick="putMoney(500)"><span>Вставить 500 руб</span></div>
+						<div class="rub" onclick="putMoney(100)"><span>Вставить 100 руб</span></div>
+						<div class="rub" onclick="putMoney(50)"><span>Вставить 50 руб</span></div>
+						<div class="rub" onclick="putMoney(10)"><span>Вставить 10 руб</span></div>
+						<div class="rub" onclick="putMoney(5)"><span>Вставить 5 руб</span></div>
+						<div class="rub" onclick="putMoney(2)"><span>Вставить 2 руб</span></div>
+						<div class="rub" onclick="putMoney(1)"><span>Вставить 1 руб</span></div>
+						<div class="rub rubback" onclick="takeback()"><span>Получить сдачу</span></div>
+					</div>
 				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<span class="spanmoney">Купюра 500 руб</span><span class="bablo" id="money500"></span>
+				<span class="spanmoney">Купюра 100 руб</span><span class="bablo" id="money100"></span>
+				<span class="spanmoney">Купюра 50 руб</span><span class="bablo" id="money50"></span>
+				<span class="spanmoney">Монета 10 руб</span><span class="bablo" id="money10"></span>
+				<span class="spanmoney">Монета 5 руб</span><span class="bablo" id="money5"></span>
+				<span class="spanmoney">Монета 2 руб</span><span class="bablo" id="money2"></span>
+				<span class="spanmoney">Монета 1 руб</span><span class="bablo" id="money1"></span>
 			</div>
 		</div>
 
 		<script>
 			let money = document.getElementById("money");
+			let money500 = document.getElementById("money500");
+			let money100 = document.getElementById("money100");
+			let money50 = document.getElementById("money50");
+			let money10 = document.getElementById("money10");
+			let money5 = document.getElementById("money5");
+			let money2 = document.getElementById("money2");
+			let money1 = document.getElementById("money1");
 
 			function getCoffee(price, name) {
 				if (money.value >= price) {
@@ -112,6 +172,48 @@
 					console.log("Нет денег, значит нет и кофе");
 				}
 	
+			}
+			function putMoney(sum) {
+				money.value = Number(money.value) + Number(sum);
+			}
+			function takeback() {
+				document.getElementById('money500').innerText = 0;
+				document.getElementById('money100').innerText = 0;
+				document.getElementById('money50').innerText = 0;
+				document.getElementById('money10').innerText = 0;
+				document.getElementById('money5').innerText = 0;
+				document.getElementById('money2').innerText = 0;
+				document.getElementById('money1').innerText = 0;
+
+				while (money.value >= 500) {
+				money.value = Number(money.value) - 500;
+				document.getElementById('money500').innerText = Number(document.getElementById('money500').innerText) + 1;
+				}
+				while (money.value >= 100) {
+				money.value = Number(money.value) - 100;
+				document.getElementById('money100').innerText = Number(document.getElementById('money100').innerText) + 1;
+				}
+				while (money.value >= 50) {
+				money.value = Number(money.value) - 50;
+				document.getElementById('money50').innerText = Number(document.getElementById('money50').innerText) + 1;
+				}
+				while (money.value >= 10) {
+				money.value = Number(money.value) - 10;
+				document.getElementById('money10').innerText = Number(document.getElementById('money10').innerText) + 1;
+				}
+				while (money.value >= 5) {
+				money.value = Number(money.value) - 5;
+				document.getElementById('money5').innerText = Number(document.getElementById('money5').innerText) + 1;
+				}
+				while (money.value >= 2) {
+				money.value = Number(money.value) - 2;
+				document.getElementById('money2').innerText = Number(document.getElementById('money2').innerText) + 1;
+				}
+				while (money.value >= 1) {
+				money.value = Number(money.value) - 1;
+				document.getElementById('money1').innerText = Number(document.getElementById('money1').innerText) + 1;
+				}
+		
 			}
 		</script>
 		<script
